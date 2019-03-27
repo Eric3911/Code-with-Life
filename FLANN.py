@@ -47,34 +47,33 @@ if len(good) > MIN_MATCH_COUNT:
     res = cv2.warpPerspective(ori_img, warp_matrix, (length_hight, length_width))
     rot_img = transform.rotate(res[::-1,:], -90, resize=True)
 
-    img_new = cv2.resize(rot_img, (720, 960), interpolation=cv2.INTER_CUBIC)
-    cv2.imshow("original", img_new)
-    roi_list = list()
+#     img_new = cv2.resize(rot_img, (720, 960), interpolation=cv2.INTER_CUBIC)
+#     cv2.imshow("original", img_new)
+#     roi_list = list()
 
-    rois = np.array([
-		[[45, 15], [260, 15], [260, 50], [45, 50]],
+#     rois = np.array([
+# 		[[45, 15], [260, 15], [260, 50], [45, 50]],
 	  
-		[[160, 275], [690, 275], [690, 365], [160, 365]],
+# 		[[160, 275], [690, 275], [690, 365], [160, 365]],
 
-        [[220, 365], [690, 365], [690, 600], [220, 600]],
+#         [[220, 365], [690, 365], [690, 600], [220, 600]],
         
-		[[45, 885], [200, 885], [200, 920], [45, 920]],
-		])
+# 		[[45, 885], [200, 885], [200, 920], [45, 920]],
+# 		])
     
-    for roi in rois:
-        xmin = np.min([coordinates[0] for coordinates in roi])
-        xmax = np.max([coordinates[0] for coordinates in roi])
-        ymin = np.min([coordinates[1] for coordinates in roi])
-        ymax = np.max([coordinates[1] for coordinates in roi])
-        roi_list.append((xmin, xmax, ymin, ymax))
+#     for roi in rois:
+#         xmin = np.min([coordinates[0] for coordinates in roi])
+#         xmax = np.max([coordinates[0] for coordinates in roi])
+#         ymin = np.min([coordinates[1] for coordinates in roi])
+#         ymax = np.max([coordinates[1] for coordinates in roi])
+#         roi_list.append((xmin, xmax, ymin, ymax))
 
-    result = np.zeros_like(img_new)
-    for roi in roi_list:
-        result[roi[2]:roi[3], roi[0]:roi[1]] = img_new[roi[2]:roi[3], roi[0]:roi[1]]
+#     result = np.zeros_like(img_new)
+#     for roi in roi_list:
+#         result[roi[2]:roi[3], roi[0]:roi[1]] = img_new[roi[2]:roi[3], roi[0]:roi[1]]
 
     cv2.imshow("result", result)
-    imm = cv2.normalize(result, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
-    cv2.imwrite("C:/Users/Administrator/Desktop/1010.jpg", imm)
+    cv2.imwrite("C:/Users/Administrator/Desktop/1010.jpg",result)
     cv2.waitKey(0)
 else:
     print("Not enough matches are found - %d/%d") % (len(good),MIN_MATCH_COUNT)
