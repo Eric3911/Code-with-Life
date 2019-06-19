@@ -2,6 +2,8 @@
 # Coding :utf - 8 -*-
 # Time : 2019/6/19 15:17
 
+#改代码是读取文件夹下所有图片进行缩放多线程并行处理
+
 import os
 import PIL
 
