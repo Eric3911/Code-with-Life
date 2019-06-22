@@ -1,0 +1,42 @@
+
+
+'''
+python多线程问题解决方法
+map()函数在python3中返回一个迭代对象，在python2中返一个列表
+
+'''
+
+
+def test(num):
+    return num *2
+ 
+a = [1,2,3,4,5] 
+ res = map(test,a)
+ print(res)
+ print('map返回的对象类型：',type(res))
+ print('系列化输出：',list(res))
+ 
+'''
+map函数的原理，在多进程编程中Pool池的用法中一种就是利用map函数开启多进程，
+可以大大提高程序的效率。在最简单的形式情况下map()带着一个函数一个队列然后
+将功能函数用作用在序列的每个元素上后创建每个返回应用计算后处理得到的返回列表。
+'''
+#map函数的原理，
+
+def mymap(func,seq):
+    mapped_seq = []
+    for eachItem in seq:
+        mapped_seq.append(func(eachItem))
+        
+    return mapped_seq
+    
+    
+#调用改函数如下
+def test(x):
+    return x*x
+
+print(mymap(test,range(10)))
+
+
+
+
